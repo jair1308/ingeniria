@@ -7,32 +7,12 @@ $(document).ready(function() {
     }
     correo = correo.split('"');
 
-    let foundUser = users.find(user => user.email === correo[1]);
-
-    $("#PerfilName").append(foundUser.name + '' + foundUser.apellidos);
-
-    
     // Toggle del sidebar en móviles
     $("#sidebarToggle").click(function () {
         $("#sidebar").toggleClass("active");
     });
-
-    $("#logout").click(function () {
-        Swal.fire({
-            icon: "info",
-            title: "Estas seguro de cerrar sesión?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Confirmar",
-            denyButtonText: `Cancelar`
-          }).then((result) => {
-            if (result.isConfirmed) {
-                localStorage.removeItem('emailIngreso');
-                window.location.href = 'login.html';
-            }
-          });
-        return;
-    });
+    let foundUser = users.find(user => user.email === correo[1]);
+    $("#PerfilName").append(foundUser.name + '' + foundUser.apellidos);
 
     $("#exportar").click(function () {
         // Obtener datos de localStorage
@@ -52,6 +32,36 @@ $(document).ready(function() {
 
         // Exportar archivo Excel
         XLSX.writeFile(wb, "datos.xlsx");
+    });
+    $("#logout").click(function () {
+        Swal.fire({
+            icon: "info",
+            title: "Estas seguro de cerrar sesión?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Confirmar",
+            denyButtonText: `Cancelar`
+          }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem('emailIngreso');
+                window.location.href = 'login.html';
+            }
+          });
+        return;
+    });
+
+    users.forEach((usuario, index) => {
+        let htmlRender = `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${usuario.name}</td>
+                <td>${usuario.apellidos}</td>
+                <td>${usuario.email}</td>
+            </tr>
+        `;
+    
+        $("#tablaUsuarios").append(htmlRender);
+
     });
 
 });

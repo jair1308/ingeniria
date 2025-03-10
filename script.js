@@ -11,7 +11,7 @@ $(document).ready(function() {
         let searchEmail = $("#loginEmail").val();
         let searchPassword = $("#loginPassword").val();
 
-        let users = JSON.parse(sessionStorage.getItem("users")) || [];
+        let users = JSON.parse(localStorage.getItem("users")) || [];
 
         // Buscar el usuario por email
         let foundUser = users.find(user => user.email === searchEmail);
@@ -20,7 +20,7 @@ $(document).ready(function() {
         if (foundUser) {
             if (foundUser.password === searchPassword) {
                 
-                sessionStorage.setItem("emailIngreso", JSON.stringify(searchEmail));
+                localStorage.setItem("emailIngreso", JSON.stringify(searchEmail));
                 window.location.href = 'dashboard_inicial.html';
             } else {
                 $("#resultMessage").text("❌ Clave incorrecta.").css("color", "red");
@@ -43,8 +43,8 @@ $(document).ready(function() {
             return; // No guarda el usuario si el correo ya existe
         }
 
-        // Obtener el arreglo actual de sessionStorage o inicializarlo
-        let users = JSON.parse(sessionStorage.getItem("users")) || [];
+        // Obtener el arreglo actual de localStorage o inicializarlo
+        let users = JSON.parse(localStorage.getItem("users")) || [];
         // Verificar si el correo ya está registrado
         let existingUser = users.find(user => user.email === email);
 
@@ -55,8 +55,8 @@ $(document).ready(function() {
         // Agregar el nuevo usuario
         users.push({ email, password, name, apellidos });
 
-        // Guardar en sessionStorage
-        sessionStorage.setItem("users", JSON.stringify(users));
+        // Guardar en localStorage
+        localStorage.setItem("users", JSON.stringify(users));
 
         window.location.reload();
     });

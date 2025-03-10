@@ -35,3 +35,17 @@
   background-color: hsla(0, 0%, 100%, 0.9) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to right, #1E3C72, #2A5298);
+}
+
+
+.contenedorInicial{
+  margin-top: 12rem !important;
+}

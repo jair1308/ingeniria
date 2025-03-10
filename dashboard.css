@@ -1,0 +1,26 @@
+/* Sidebar responsivo */
+.sidebar {
+    height: 100vh;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 75%;
+        height: 100vh;
+        background-color: #343a40;
+        z-index: 1000;
+        padding-top: 1rem;
+    }
+    .sidebar.active {
+        display: block;
+    }
+}
+
+.nav-item.active {
+    background-color: #065ab4; /* Color de fondo azul */
+    color: white !important; /* Color del texto */
+    border-radius: 5px; /* Bordes redondeados */
+}
