@@ -28,7 +28,12 @@ $(document).ready(function() {
 });
 
 function verificarActividadesPendientes() {
-    let actividades = JSON.parse(localStorage.getItem("actividades")) || [];
+    correo = localStorage.getItem("emailIngreso");
+    // Obtener actividades del usuario actual
+    let actividadesPorUsuario = JSON.parse(localStorage.getItem("actividadesPorUsuario")) || {};
+    let actividades = actividadesPorUsuario[correo] || [];
+
+    // Verificar si hay actividades pendientes
     if (actividades.length > 0) {
         Swal.fire("Recordatorio", "Tienes actividades pendientes por hacer", "info");
     }
