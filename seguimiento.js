@@ -80,7 +80,7 @@ function mostrarActividades() {
         }
 
         let li = $(`
-            <li class='list-group-item d-flex flex-column align-items-start' data-index="${index}" style="${bgColor}">
+            <li class='list-group-item my-2 d-flex flex-column align-items-start' data-index="${index}" style="${bgColor}">
                 <div class="d-flex justify-content-between align-items-center w-100">
                     <span>${item.actividad} - ${item.fecha}</span>
                     <button class='btn btn-danger btn-sm' onclick='eliminarActividad(${index})'>Eliminar</button>
