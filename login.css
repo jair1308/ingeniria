@@ -46,6 +46,12 @@ html, body {
 }
 
 
-.contenedorInicial{
-  margin-top: 9rem !important;
+.contenedorInicial {
+  margin-top: 0; /* Por defecto, sin margen en pantallas pequeñas */
+}
+
+@media (min-width: 992px) { /* A partir de pantallas grandes (lg) */
+  .contenedorInicial {
+    margin-top: 9rem !important;
+  }
 }
