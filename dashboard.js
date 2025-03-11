@@ -1,39 +1,10 @@
 $(document).ready(function() {
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    let correo = localStorage.getItem("emailIngreso");
-    if (correo == null) {
-        window.location.href = 'login.html';
-        return;
-    }
-    correo = correo.split('"');
-
-    let foundUser = users.find(user => user.email === correo[1]);
-
-    $("#PerfilName").append(foundUser.name + '' + foundUser.apellidos);
-
-    
+    verificarActividadesPendientes();    
     // Toggle del sidebar en móviles
     $("#sidebarToggle").click(function () {
         $("#sidebar").toggleClass("active");
     });
-
-    $("#logout").click(function () {
-        Swal.fire({
-            icon: "info",
-            title: "Estas seguro de cerrar sesión?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Confirmar",
-            denyButtonText: `Cancelar`
-          }).then((result) => {
-            if (result.isConfirmed) {
-                localStorage.removeItem('emailIngreso');
-                window.location.href = 'login.html';
-            }
-          });
-        return;
-    });
-
+    
     $("#exportar").click(function () {
         // Obtener datos de localStorage
         let datos = localStorage.getItem("users");
@@ -55,3 +26,10 @@ $(document).ready(function() {
     });
 
 });
+
+function verificarActividadesPendientes() {
+    let actividades = JSON.parse(localStorage.getItem("actividades")) || [];
+    if (actividades.length > 0) {
+        Swal.fire("Recordatorio", "Tienes actividades pendientes por hacer", "info");
+    }
+}

@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    console.log("jQuery está funcionando");
-
     // Mostrar mensaje en consola cuando se cambia de pestaña
     $(".nav-link").click(function() {
         $("#resultMessage").text("");
@@ -8,27 +6,20 @@ $(document).ready(function() {
 
     // Mostrar mensaje en consola cuando se cambia de pestaña
     $("#ingresar").click(function() {
-        let searchEmail = $("#loginEmail").val();
-        let searchPassword = $("#loginPassword").val();
+        login();
+    });
 
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        // Buscar el usuario por email
-        let foundUser = users.find(user => user.email === searchEmail);
-
-        // Verificar si el usuario existe y la clave es correcta
-        if (foundUser) {
-            if (foundUser.password === searchPassword) {
-                
-                localStorage.setItem("emailIngreso", JSON.stringify(searchEmail));
-                window.location.href = 'dashboard_inicial.html';
-            } else {
-                $("#resultMessage").text("❌ Clave incorrecta.").css("color", "red");
-            }
-        } else {
-            $("#resultMessage").text("❌ Correo no encontrado.").css("color", "red");
+    // Mostrar mensaje en consola cuando se cambia de pestaña
+    $("#loginEmail").keypress(function(e) {
+        if (e.which == 13) {
+            login();
         }
+    });
 
+    $("#loginPassword").keypress(function(e) {
+        if (e.which == 13) {
+            login();
+        }
     });
     
     // Mostrar mensaje en consola cuando se cambia de pestaña
@@ -60,22 +51,27 @@ $(document).ready(function() {
 
         window.location.reload();
     });
-
-    // Validación básica de formularios antes de enviar
-    $("form").submit(function(event) {
-        let valid = true;
-        $(this).find("input").each(function() {
-            if ($(this).val().trim() === "") {
-                $(this).addClass("is-invalid");
-                valid = false;
-            } else {
-                $(this).removeClass("is-invalid");
-            }
-        });
-
-        if (!valid) {
-            event.preventDefault(); // Evita que el formulario se envíe si hay campos vacíos
-            alert("Por favor, completa todos los campos.");
-        }
-    });
 });
+
+function login() {
+    let searchEmail = $("#loginEmail").val();
+    let searchPassword = $("#loginPassword").val();
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Buscar el usuario por email
+    let foundUser = users.find(user => user.email === searchEmail);
+
+    // Verificar si el usuario existe y la clave es correcta
+    if (foundUser) {
+        if (foundUser.password === searchPassword) {
+            
+            localStorage.setItem("emailIngreso", JSON.stringify(searchEmail));
+            window.location.href = 'dashboard_inicial.html';
+        } else {
+            $("#resultMessage").text("❌ Clave incorrecta.").css("color", "red");
+        }
+    } else {
+        $("#resultMessage").text("❌ Correo no encontrado.").css("color", "red");
+    }
+}
