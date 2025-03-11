@@ -50,17 +50,19 @@ $(document).ready(function() {
     });
 });
 
-// Verifica si hay actividades pendientes
+// Verifica si hay actividades pendientes con proceso diferente a 100
 function verificarActividadesPendientes() {
     let actividadesPorUsuario = JSON.parse(localStorage.getItem("actividadesPorUsuario")) || {};
     let actividades = actividadesPorUsuario[correo] || [];
-    
-    if (actividades.length > 0) {
+
+    // Filtra actividades que tienen un proceso diferente a 100
+    let actividadesPendientes = actividades.filter(actividad => actividad.progreso !== 100);
+
+    if (actividadesPendientes.length > 0) {
         Swal.fire("Recordatorio", "Tienes actividades pendientes por hacer", "info");
     }
 }
-
-// Muestra las actividades en la lista
+// Muestra las actividades en la lista con colores según el progreso
 function mostrarActividades() {
     let lista = $("#lista-actividades");
     lista.empty();
@@ -69,8 +71,16 @@ function mostrarActividades() {
     let actividades = actividadesPorUsuario[correo] || [];
 
     actividades.forEach((item, index) => {
+        let bgColor = ""; // Color de fondo por defecto
+
+        if (item.progreso == 100) {
+            bgColor = "background-color: #c8e6c9;"; // Verde pastel
+        } else if (item.progreso > 49 && item.progreso <= 75){
+            bgColor = "background-color: #ffc6a4;"; // Naranja pastel
+        }
+
         let li = $(`
-            <li class='list-group-item d-flex flex-column align-items-start' data-index="${index}">
+            <li class='list-group-item d-flex flex-column align-items-start' data-index="${index}" style="${bgColor}">
                 <div class="d-flex justify-content-between align-items-center w-100">
                     <span>${item.actividad} - ${item.fecha}</span>
                     <button class='btn btn-danger btn-sm' onclick='eliminarActividad(${index})'>Eliminar</button>
@@ -82,7 +92,7 @@ function mostrarActividades() {
                     ${[25, 50, 75, 100].map(value => `
                         <div class="col-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="progressRadio${index}" value="${value}" ${item.progreso == value ? 'checked' : ''}>
+                                <input class="form-check-input" type="radio" name="progressRadio${index}" value="${value}" ${item.progreso == value ? 'checked' : ''} onchange="actualizarProgreso(${index}, ${value})">
                                 <label class="form-check-label">${value}%</label>
                             </div>
                         </div>
@@ -93,6 +103,18 @@ function mostrarActividades() {
 
         lista.append(li);
     });
+}
+
+// Función para actualizar el progreso y recargar la lista con los nuevos colores
+function actualizarProgreso(index, valor) {
+    let actividadesPorUsuario = JSON.parse(localStorage.getItem("actividadesPorUsuario")) || {};
+    let actividades = actividadesPorUsuario[correo] || [];
+
+    if (actividades[index]) {
+        actividades[index].progreso = valor;
+        localStorage.setItem("actividadesPorUsuario", JSON.stringify(actividadesPorUsuario));
+        mostrarActividades(); // Vuelve a renderizar la lista con los cambios
+    }
 }
 
 // Eliminar una actividad
