@@ -6,14 +6,15 @@ $(document).ready(function() {
     });
 });
 
+// Verifica si hay actividades pendientes con proceso diferente a 100
 function verificarActividadesPendientes() {
-    correo = localStorage.getItem("emailIngreso");
-    // Obtener actividades del usuario actual
     let actividadesPorUsuario = JSON.parse(localStorage.getItem("actividadesPorUsuario")) || {};
     let actividades = actividadesPorUsuario[correo] || [];
 
-    // Verificar si hay actividades pendientes
-    if (actividades.length > 0) {
+    // Filtra actividades que tienen un proceso diferente a 100
+    let actividadesPendientes = actividades.filter(actividad => actividad.progreso !== 100);
+
+    if (actividadesPendientes.length > 0) {
         Swal.fire("Recordatorio", "Tienes actividades pendientes por hacer", "info");
     }
 }
