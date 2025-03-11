@@ -1,27 +1,24 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let users = JSON.parse(localStorage.getItem("users")) || [];
+
     $("#exportar").click(function () {
-        // Obtener datos de localStorage
-        let datos = localStorage.getItem("users");
-        if (!datos) {
-            alert("No hay datos en localStorage.");
+        if (users.length === 0) {
+            Swal.fire("Error", "No hay datos para exportar.", "warning");
             return;
         }
 
-        // Convertir a objeto JavaScript
-        let jsonData = JSON.parse(datos);
+        // Crear nueva lista de usuarios sin 'password'
+        let filteredUsers = users.map(({ password, ...rest }) => rest);
 
-        // Crear hoja de cálculo
-        let ws = XLSX.utils.json_to_sheet(jsonData);
+        let ws = XLSX.utils.json_to_sheet(filteredUsers);
         let wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Datos");
-
-        // Exportar archivo Excel
-        XLSX.writeFile(wb, "datos.xlsx");
+        XLSX.utils.book_append_sheet(wb, ws, "Usuarios");
+        XLSX.writeFile(wb, "usuarios.xlsx");
     });
-
+    
+    // Renderizar usuarios en la tabla
     users.forEach((usuario, index) => {
-        let htmlRender = `
+        let fila = `
             <tr>
                 <td>${index + 1}</td>
                 <td>${usuario.name}</td>
@@ -29,9 +26,14 @@ $(document).ready(function() {
                 <td>${usuario.email}</td>
             </tr>
         `;
-    
-        $("#tablaUsuarios").append(htmlRender);
-
+        $("#tablaUsuarios tbody").append(fila);
     });
 
+    // Sidebar toggle en móviles
+    $("#sidebarToggle").click(function () {
+        $("#sidebar").toggleClass("show");
+    });
+
+    // Tooltip Bootstrap
+    $('[data-bs-toggle="tooltip"]').tooltip();
 });

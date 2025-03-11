@@ -39,10 +39,12 @@
             <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar" id="sidebar">
                 <div class="position-sticky">
                     <ul class="nav flex-column text-white">
-                        <li class="nav-item"><a class="nav-link text-white" href="dashboard_inicial.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-bar-chart"></i> Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="listUsers.html"><i class="bi bi-people"></i> Usuarios</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="seguimiento.html"><i class="bi bi-sliders"></i> seguimiento</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="multimedia.html"><i class="bi bi-bar-chart"></i>
+                            Recursos Educativos</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="listUsers.html"><i
+                                    class="bi bi-people"></i> Usuarios</a></li>
+                        <li class="nav-item active"><a class="nav-link text-white" href="seguimiento.html"><i
+                                    class="bi bi-sliders"></i> seguimiento</a></li>
                     </ul>
                 </div>
             </nav>
@@ -60,8 +62,9 @@
                     <label for="fecha" class="form-label">Fecha:</label>
                     <input type="date" id="fecha" class="form-control">
                 </div>
-                <button class="btn btn-primary" id="guardar">Guardar Actividad</button>
-                <button class="btn btn-success" onclick="descargarDatos()">Descargar Datos</button>
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary" id="guardar">Guardar Actividad</button>
+                </div>
                 
                 <h3 class="mt-4">Actividades Registradas</h3>
                 <ul id="lista-actividades" class="list-group"></ul>

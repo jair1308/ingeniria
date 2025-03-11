@@ -59,7 +59,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             }).then(() => {
-                window.location.href = 'dashboard_inicial.html';
+                window.location.href = 'multimedia.html';
             });
         }
     });

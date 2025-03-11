@@ -67,7 +67,7 @@ function login() {
         if (foundUser.password === searchPassword) {
             
             localStorage.setItem("emailIngreso", JSON.stringify(searchEmail));
-            window.location.href = 'dashboard_inicial.html';
+            window.location.href = 'multimedia.html';
         } else {
             $("#resultMessage").text("❌ Clave incorrecta.").css("color", "red");
         }

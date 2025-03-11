@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos educativos</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Íconos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <button class="btn btn-light d-md-none me-3" id="sidebarToggle"><i class="bi bi-list"></i></button>
+            <a class="navbar-brand" href="#">B.V.S</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a id="PerfilName" class="nav-link" href="perfil_user.html"><i
+                                class="bi bi-person"></i></a></li>
+                    <li class="nav-item"><a id="logout" class="nav-link"><i class="bi bi-box-arrow-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar" id="sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column text-white">
+                        <li class="nav-item active"><a class="nav-link text-white" href="multimedia.html"><i class="bi bi-bar-chart"></i>
+                            Recursos Educativos</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="listUsers.html"><i
+                                    class="bi bi-people"></i> Usuarios</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="seguimiento.html"><i
+                                    class="bi bi-sliders"></i> seguimiento</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="accordion mt-4" id="recursosAccordion">
+
+                    <!-- Artículos -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                📰 Artículos
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#recursosAccordion">
+                            <div class="accordion-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="#">✅ 10 hábitos saludables para una vida
+                                            plena</a></li>
+                                    <li class="list-group-item"><a href="#">🥗 Cómo mejorar tu alimentación diaria</a>
+                                    </li>
+                                    <li class="list-group-item"><a href="#">🏃‍♂️ La importancia del ejercicio en tu
+                                            bienestar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Videos -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                🎥 Videos
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#recursosAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-6 text-center">
+                                        <h5>🍏 Cómo hacer dieta</h5>
+                                        <iframe width="100%" height="315"
+                                            src="https://www.youtube.com/embed/2fmbjguxHm8" title="Cómo hacer dieta"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <h5>💪 Ejercicios recomendados</h5>
+                                        <iframe width="100%" height="315"
+                                            src="https://www.youtube.com/embed/vZ97C64ixNI"
+                                            title="Ejercicios recomendados" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12 text-center">
+                                        <h5>🔥 Beneficios de cuidarse</h5>
+                                        <iframe width="100%" height="315"
+                                            src="https://www.youtube.com/embed/jsqONxiLcYM"
+                                            title="Beneficios de cuidarse" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Podcasts -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                🎙️ Podcasts
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#recursosAccordion">
+                            <div class="accordion-body">
+                                <div class="card mb-3 p-3 shadow-sm">
+                                    <h5 class="card-title">🏋️‍♂️ Historias de éxito con dieta y ejercicio</h5>
+                                    <audio controls class="w-100">
+                                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                                            type="audio/mpeg">
+                                        Tu navegador no soporta el elemento de audio.
+                                    </audio>
+                                </div>
+                                <div class="card mb-3 p-3 shadow-sm">
+                                    <h5 class="card-title">💪 Superando el bullying y fortaleciendo la autoestima</h5>
+                                    <audio controls class="w-100">
+                                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+                                            type="audio/mpeg">
+                                        Tu navegador no soporta el elemento de audio.
+                                    </audio>
+                                </div>
+                                <div class="card mb-3 p-3 shadow-sm">
+                                    <h5 class="card-title">🔥 Consejos para estar en buena forma</h5>
+                                    <audio controls class="w-100">
+                                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+                                            type="audio/mpeg">
+                                        Tu navegador no soporta el elemento de audio.
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Imágenes -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                🖼️ Ejercicios
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#recursosAccordion">
+                            <div class="accordion-body text-center">
+                                <div class="container">
+                                    <div class="row gy-3">
+                                        <!-- Ejercicio 1: Sentadillas -->
+                                        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                                            <img src="https://tse1.mm.bing.net/th?id=OIP.LnpJ_ADvrbZKHvCIDXkX-QHacV&pid=Api" 
+                                                class="img-fluid rounded shadow-lg" style="max-height: 250px;" alt="Sentadillas">
+                                            <p class="mt-2">Sentadillas</p>
+                                        </div>
+                                        <!-- Ejercicio 2: Flexiones de pecho -->
+                                        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                                            <img src="https://tse4.mm.bing.net/th?id=OIP.04eun9ilzpKCZpyXEPQNQwHaFW&pid=Api" 
+                                                class="img-fluid rounded shadow-lg" style="max-height: 250px;" alt="Flexiones de pecho">
+                                            <p class="mt-2">Flexiones de pecho</p>
+                                        </div>
+                                        <!-- Ejercicio 3: Plancha abdominal -->
+                                        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                                            <img src="https://tse4.mm.bing.net/th?id=OIP.adrojEylxS86IKEXttuy8gHaLu&pid=Api" 
+                                                class="img-fluid rounded shadow-lg" style="max-height: 250px;" alt="Plancha abdominal">
+                                            <p class="mt-2">Plancha abdominal</p>
+                                        </div>
+                                        <!-- Ejercicio 4: Peso muerto -->
+                                        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                                            <img src="https://tse4.mm.bing.net/th?id=OIP.XCg9f_GTK56cOOY3kXvfgAHaHa&pid=Api" 
+                                                class="img-fluid rounded shadow-lg" style="max-height: 250px;" alt="Peso muerto">
+                                            <p class="mt-2">Peso muerto</p>
+                                        </div>
+                                        <!-- Ejercicio 5: Zancadas -->
+                                        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                                            <img src="https://tse1.mm.bing.net/th?id=OIP.eed02DzoMEcm4wtl1znohgHaJl&pid=Api" 
+                                                class="img-fluid rounded shadow-lg" style="max-height: 250px;" alt="Zancadas">
+                                            <p class="mt-2">Zancadas</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="global.js"></script>
+</body>
+
+</html>
